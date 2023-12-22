@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,18 +35,30 @@ public class AuthController {
         return "signIn";
     }
 
+    @PostMapping("/signIn")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        Model model){
+        User user = authService.check(username, password);
+        System.out.println(user.getId());
+        if(user == null){
+            return "signIn";
+        }
+        System.out.println(user.getId() + " and " + user.getUsername());
+        authService.USER = authService.findById(username);
+        model.addAttribute("user", authService.findById(username));
+        return "navList";
+    }
 
     @PostMapping("/signUp")
     public String saveUser(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
-        User save = authService.save(username, password);
-
-        return "redirect:/login";
+        authService.save(username, password);
+        return signIn();
     }
 
     private UserDetails loggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails user = (UserDetails) authentication.getPrincipal();
-        return user;
+        return (UserDetails) authentication.getPrincipal();
     }
 }

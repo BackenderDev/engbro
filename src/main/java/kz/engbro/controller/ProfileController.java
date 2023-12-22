@@ -25,10 +25,10 @@ public class ProfileController {
     @GetMapping()
     public String profile(Model model) {
         System.out.println("==================================");
-        System.out.println(loggedUser());
+//        System.out.println(loggedUser());
         System.out.println("==================================");
-        model.addAttribute("user", authService.findById(loggedUser().getUsername()));
-        model.addAttribute("password", authService.findById(loggedUser().getUsername()).getPassword());
+        model.addAttribute("user", AuthService.USER);
+//        model.addAttribute("password", authService.findById(loggedUser().getUsername()).getPassword());
         return "profile";
     }
 

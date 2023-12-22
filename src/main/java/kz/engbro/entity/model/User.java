@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "username")
     private String username;
@@ -31,7 +31,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Level level;
 
-    public User(Long id, String username, String password, Long count, Language language, Level level) {
+    public User(Integer id, String username, String password, Long count, Language language, Level level) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -47,8 +47,8 @@ public class User {
         return new UserFactory();
     }
 
-    public Long getId() {
-        return this.id;
+    public Integer getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -71,7 +71,7 @@ public class User {
         return this.level;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -148,7 +148,7 @@ public class User {
     }
 
     public static class UserFactory {
-        private Long id;
+        private Integer id;
         private String username;
         private String password;
         private Long count;
@@ -158,7 +158,7 @@ public class User {
         UserFactory() {
         }
 
-        public UserFactory id(Long id) {
+        public UserFactory id(Integer id) {
             this.id = id;
             return this;
         }
