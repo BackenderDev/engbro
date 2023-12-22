@@ -45,7 +45,10 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/signIn")
                         .permitAll())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/signIn")
+                        .permitAll());
 
         return http.build();
     }

@@ -54,11 +54,15 @@
 	</dependencies>
 
 	<build>
+		<finalName>engPro</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-
+				<configuration>
+					<outputDirectory>Pro</outputDirectory>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

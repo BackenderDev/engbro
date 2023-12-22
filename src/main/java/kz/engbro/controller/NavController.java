@@ -32,20 +32,20 @@ public class NavController {
 
     @RequestMapping(value = "/menu", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> navMenu(@RequestBody String sum){
-        System.out.println("sum: " + sum);
+    public ResponseEntity<String> navMenu(@RequestBody Map<String, String> sum){
         User user = AuthService.USER;
-//        int s = Integer.valueOf(sum);
-//        if(s >= 13){
-//            user.setLevel(Level.ADVANCED);
-//        } else if (s > 10){
-//            user.setLevel(Level.INTERMEDIATE);
-//        } else if (s > 6){
-//            user.setLevel(Level.ELEMENTARY);
-//        } else if (s > 3){
-//            user.setLevel(Level.BEGINNER);
-//        }
-        String jsonResponse = "{\"message\": \"Уровень пользователя обновлен\", \"level\": \"" + "asas" + "\"}";
+        int s = Integer.parseInt(sum.get("sum"));
+        if(s >= 13){
+            user.setLevel(Level.ADVANCED);
+        } else if (s > 10){
+            user.setLevel(Level.INTERMEDIATE);
+        } else if (s > 6){
+            user.setLevel(Level.ELEMENTARY);
+        } else if (s > 3){
+            user.setLevel(Level.BEGINNER);
+        }
+        authService.update(user);
+        String jsonResponse = "{\"message\": \"Уровень пользователя обновлен\", \"level\": \"" + user.getLevel() + "\"}";
 
         // Возвращаем JSON-строку и статус OK
         return new ResponseEntity<>(jsonResponse, HttpStatus.OK);

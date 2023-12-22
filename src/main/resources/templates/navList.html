@@ -63,14 +63,13 @@
 </style>
 <body style="background-color: #ccc">
 
-<a th:href="@{/level}"> qw</a>
 <nav id="example-6">
     <ul>
-        <li><a href="@{/level}">Уровень языка</a></li>
+        <li><a th:href="@{/level}">Уровень языка</a></li>
         <li><a th:href="@{/exercises}">Упражнения</a></li>
-        <li><a th:href="@{/dictionary}">Словарь</a></li>
+        <li><a th:href="@{/pair}">Словарь</a></li>
         <li><a th:href="@{/profile}">Мой профиль</a></li>
-        <li><a th:href="@{/logout}">Выход</a></li>
+        <li><a th:href="@{/auth/logout}">Выход</a></li>
     </ul>
 </nav>
 

@@ -33,6 +33,11 @@ public class AuthService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public void update(User user){
+        userRepository.save(user);
+    }
+
     public User check(String username, String password){
         User user = userRepository.findByUsername(username).orElse(null);
         if(user == null){

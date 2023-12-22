@@ -1,13 +1,14 @@
 version: '3'
 
 volumes:
+  maven-data:
   db-data:
 
 services:
 
   postgres:
-    image: postgres:alpine3.19
-    container_name: "db"
+    image: postgres:alpine3.18
+    container_name: "DB"
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
@@ -15,4 +16,16 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=engbro
+      - POSTGRES_DB=engProject
+  engPro:
+    image: 'docker-spring-boot-postgres:latest'
+    depends_on:
+      - postgres
+    build:
+      context: .
+    container_name: "APP"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/engProject
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update

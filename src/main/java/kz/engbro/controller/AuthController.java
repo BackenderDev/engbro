@@ -29,6 +29,11 @@ public class AuthController {
     public String signUp() {
         return "signUp";
     }
+    @GetMapping("/logout")
+    public String logout() {
+        AuthService.USER = null;
+        return "redirect:logout";
+    }
 
     @GetMapping("/signIn")
     public String signIn() {

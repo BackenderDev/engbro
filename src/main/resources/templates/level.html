@@ -49,8 +49,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<p id="message">qwdq</p>
-<p id="level">wqfweq</p>
+<p id="message" style="display: none">      </p>
+<p id="level" style="display: none">    </p>
 <a th:href="@{/nav}" id="a" style="display: none">
     <button id="b" style="display: none">return to menu</button>
 </a>
@@ -145,8 +145,10 @@
            .then(data => {
                // Обрабатываем полученные данные
                document.getElementById("message").innerHTML = data.message;
+               document.getElementById("message").style.display = 'block';
                document.getElementById("a").style.display = 'block';
                document.getElementById("level").innerHTML = "Текущий уровень: " + data.level;
+               document.getElementById("level").style.display = 'block';
                document.getElementById("b").style.display = 'block';
            })
            .catch(error => {
@@ -154,7 +156,7 @@
            });
        document.getElementById("quizForm").style.display = 'none';
        document.getElementById("myModal").style.display = 'none';
-       console.log("qewadwa")
+       // console.log("qewadwa")
    }
 
 </script>
